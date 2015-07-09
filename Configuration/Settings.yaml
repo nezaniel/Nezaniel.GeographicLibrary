@@ -1,0 +1,4 @@
+TYPO3:
+  TypoScript:
+    defaultContext:
+      Location: 'Nezaniel\GeographicLibrary\Eel\Helper\LocationHelper'
