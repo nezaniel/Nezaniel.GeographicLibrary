@@ -26,6 +26,7 @@ interface GeoCodingAdapterInterface {
 	 * ]
 	 * @param string $address
 	 * @return array The coordinates
+	 * @throws Exception\NoSuchCoordinatesException If no coordinates could be found
 	 */
 	public function fetchCoordinatesByAddress($address);
 
@@ -39,6 +40,7 @@ interface GeoCodingAdapterInterface {
 	 * @param string $zip
 	 * @param string $countryCode The two character ISO 3166-1 country code
 	 * @return array The coordinates
+	 * @throws Exception\NoSuchCoordinatesException If no coordinates could be found
 	 */
 	public function fetchCoordinatesByPostalCode($zip, $countryCode);
 

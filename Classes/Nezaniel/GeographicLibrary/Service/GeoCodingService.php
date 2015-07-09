@@ -10,6 +10,7 @@ namespace Nezaniel\GeographicLibrary\Service;
  *                                                                               *
  * The TYPO3 project - inspiring people to share!                                *
  *                                                                               */
+use Nezaniel\GeographicLibrary\Service\Exception\NoSuchCoordinatesException;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Cache\Frontend\VariableFrontend;
 
@@ -57,27 +58,35 @@ class GeoCodingService {
 
 
 	/**
-	 * @param string $address
-	 * @return array The coordinates
+	 * @param string $address The address string
+	 * @return array|NULL The coordinates or NULL if none could be fetched
 	 */
 	public function fetchCoordinatesByAddress($address) {
 		if (!isset($this->addressCoordinates[$address])) {
-			$this->addressCoordinates[$address] = $this->geoCodingAdapter->fetchCoordinatesByAddress($address);
-			$this->cache->set('addressCoordinates', $this->addressCoordinates);
+			try {
+				$this->addressCoordinates[$address] = $this->geoCodingAdapter->fetchCoordinatesByAddress($address);
+				$this->cache->set('addressCoordinates', $this->addressCoordinates);
+			} catch (NoSuchCoordinatesException $exception) {
+				return NULL;
+			}
 		}
 		return $this->addressCoordinates[$address];
 	}
 
 	/**
-	 * @param string $zip
+	 * @param string $postalCode The zip code
 	 * @param string $countryCode The two character ISO 3166-1 country code
-	 * @return array The coordinates
+	 * @return array|NULL The coordinates or NULL if none could be fetched
 	 */
-	public function fetchCoordinatesByGermanPostalCode($zip, $countryCode) {
-		$cacheIdentifier = $zip . '-' . $countryCode;
+	public function fetchCoordinatesByPostalCode($postalCode, $countryCode) {
+		$cacheIdentifier = $postalCode . '-' . $countryCode;
 		if (!isset($this->postalCodeCoordinates[$cacheIdentifier])) {
-			$this->postalCodeCoordinates[$cacheIdentifier] = $this->geoCodingAdapter->fetchCoordinatesByPostalCode($zip, $countryCode);
-			$this->cache->set('postalCodeCoordinates', $this->postalCodeCoordinates);
+			try {
+				$this->postalCodeCoordinates[$cacheIdentifier] = $this->geoCodingAdapter->fetchCoordinatesByPostalCode($postalCode, $countryCode);
+				$this->cache->set('postalCodeCoordinates', $this->postalCodeCoordinates);
+			} catch(NoSuchCoordinatesException $exception) {
+				return NULL;
+			}
 		}
 		return $this->postalCodeCoordinates[$cacheIdentifier];
 	}
