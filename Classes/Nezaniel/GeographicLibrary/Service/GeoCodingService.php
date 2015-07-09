@@ -19,6 +19,7 @@ use TYPO3\Flow\Cache\Frontend\VariableFrontend;
 class GeoCodingService {
 
 	/**
+	 * @Flow\Inject
 	 * @var GeoCodingAdapterInterface
 	 */
 	protected $geoCodingAdapter;
