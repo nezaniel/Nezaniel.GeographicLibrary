@@ -1,0 +1,13 @@
+{
+    "name": "nezaniel/geographiclibrary",
+    "type": "typo3-flow-package",
+    "description": "A PHP geocoding library based on Flow",
+    "require": {
+        "typo3/flow": "3.0.*@beta"
+    },
+    "autoload": {
+        "psr-0": {
+            "Nezaniel\\GeographicLibrary": "Classes"
+        }
+    }
+}
