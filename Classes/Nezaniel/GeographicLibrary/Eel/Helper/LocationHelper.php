@@ -13,6 +13,7 @@ namespace Nezaniel\GeographicLibrary\Eel\Helper;
 use Nezaniel\GeographicLibrary\Service\GeoCodingService;
 use TYPO3\Eel\ProtectedContextAwareInterface;
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Utility\Arrays;
 
 /**
  * Date helpers for Eel contexts
@@ -37,6 +38,19 @@ class LocationHelper implements ProtectedContextAwareInterface
         return [
             'latitude' => (float)$latitude,
             'longitude' => (float)$longitude
+        ];
+    }
+
+    /**
+     * @param string $serializedLocation
+     * @return array
+     */
+    public function parseString($serializedLocation)
+    {
+        $location = Arrays::trimExplode(',', $serializedLocation);
+        return [
+            'latitude' => (float)$location[0],
+            'longitude' => (float)$location[1]
         ];
     }
 
