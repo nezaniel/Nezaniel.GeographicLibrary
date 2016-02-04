@@ -20,7 +20,6 @@ use TYPO3\Flow\Utility\Arrays;
  */
 class LocationHelper implements ProtectedContextAwareInterface
 {
-
     /**
      * @Flow\Inject
      * @var GeoCodingService
@@ -123,5 +122,4 @@ class LocationHelper implements ProtectedContextAwareInterface
     {
         return true;
     }
-
 }

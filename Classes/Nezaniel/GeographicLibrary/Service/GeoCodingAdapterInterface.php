@@ -15,33 +15,32 @@ use TYPO3\Flow\Annotations as Flow;
 /**
  * The geo coding interface to be implemented by adapters
  */
-interface GeoCodingAdapterInterface {
+interface GeoCodingAdapterInterface
+{
+    /**
+     * Returns coordinates by address string
+     * Return format:
+     * [
+     *     'latitude' => 47.11
+     *     'longitude => 84.72
+     * ]
+     * @param string $address
+     * @return array The coordinates
+     * @throws Exception\NoSuchCoordinatesException If no coordinates could be found
+     */
+    public function fetchCoordinatesByAddress($address);
 
-	/**
-	 * Returns coordinates by address string
-	 * Return format:
-	 * [
-	 *     'latitude' => 47.11
-	 *     'longitude => 84.72
-	 * ]
-	 * @param string $address
-	 * @return array The coordinates
-	 * @throws Exception\NoSuchCoordinatesException If no coordinates could be found
-	 */
-	public function fetchCoordinatesByAddress($address);
-
-	/**
-	 * Returns coordinates by postal code
-	 * Return format:
-	 * [
-	 *     'latitude' => 47.11
-	 *     'longitude => 84.72
-	 * ]
-	 * @param string $zip
-	 * @param string $countryCode The two character ISO 3166-1 country code
-	 * @return array The coordinates
-	 * @throws Exception\NoSuchCoordinatesException If no coordinates could be found
-	 */
-	public function fetchCoordinatesByPostalCode($zip, $countryCode);
-
+    /**
+     * Returns coordinates by postal code
+     * Return format:
+     * [
+     *     'latitude' => 47.11
+     *     'longitude => 84.72
+     * ]
+     * @param string $zip
+     * @param string $countryCode The two character ISO 3166-1 country code
+     * @return array The coordinates
+     * @throws Exception\NoSuchCoordinatesException If no coordinates could be found
+     */
+    public function fetchCoordinatesByPostalCode($zip, $countryCode);
 }
