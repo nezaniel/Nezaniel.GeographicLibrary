@@ -62,15 +62,17 @@ class GeoCodingService {
 	 * @return array|NULL The coordinates or NULL if none could be fetched
 	 */
 	public function fetchCoordinatesByAddress($address) {
-		if (!isset($this->addressCoordinates[$address])) {
+        $addressHash = sha1(mb_strtolower($address));
+		if (!isset($this->addressCoordinates[$addressHash])) {
 			try {
-				$this->addressCoordinates[$address] = $this->geoCodingAdapter->fetchCoordinatesByAddress($address);
+				$this->addressCoordinates[$addressHash] = $this->geoCodingAdapter->fetchCoordinatesByAddress($address);
+                $this->addressCoordinates[$addressHash]['address'] = $address;
 				$this->cache->set('addressCoordinates', $this->addressCoordinates);
 			} catch (NoSuchCoordinatesException $exception) {
 				return NULL;
 			}
 		}
-		return $this->addressCoordinates[$address];
+		return $this->addressCoordinates[$addressHash];
 	}
 
 	/**
