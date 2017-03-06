@@ -11,7 +11,7 @@ namespace Nezaniel\GeographicLibrary\Eel\Helper;
  * The TYPO3 project - inspiring people to share!                               *
  *                                                                              */
 use Nezaniel\GeographicLibrary\Service\GeoCodingService;
-use TYPO3\Eel\ProtectedContextAwareInterface;
+use Neos\Eel\ProtectedContextAwareInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\Utility\Arrays;
 
