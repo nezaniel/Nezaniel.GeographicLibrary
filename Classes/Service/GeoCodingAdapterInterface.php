@@ -10,7 +10,7 @@ namespace Nezaniel\GeographicLibrary\Service;
  *                                                                               *
  * The TYPO3 project - inspiring people to share!                                *
  *                                                                               */
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * The geo coding interface to be implemented by adapters

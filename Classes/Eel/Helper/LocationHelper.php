@@ -12,8 +12,8 @@ namespace Nezaniel\GeographicLibrary\Eel\Helper;
  *                                                                              */
 use Nezaniel\GeographicLibrary\Service\GeoCodingService;
 use TYPO3\Eel\ProtectedContextAwareInterface;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Utility\Arrays;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Utility\Arrays;
 
 /**
  * Date helpers for Eel contexts

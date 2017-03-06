@@ -10,8 +10,8 @@ namespace Nezaniel\GeographicLibrary\Service\Exception;
  *                                                                               *
  * The TYPO3 project - inspiring people to share!                                *
  *                                                                               */
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Exception;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Exception;
 
 /**
  * An exception to be thrown if no coordinates can be found for the given parameters

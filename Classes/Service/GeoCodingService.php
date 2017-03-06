@@ -11,8 +11,8 @@ namespace Nezaniel\GeographicLibrary\Service;
  * The TYPO3 project - inspiring people to share!                                *
  *                                                                               */
 use Nezaniel\GeographicLibrary\Service\Exception\NoSuchCoordinatesException;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Cache\Frontend\VariableFrontend;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Cache\Frontend\VariableFrontend;
 
 /**
  * @Flow\Scope("singleton")
