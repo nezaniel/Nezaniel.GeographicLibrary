@@ -12,7 +12,7 @@ namespace Nezaniel\GeographicLibrary\Service;
  *                                                                               */
 use Nezaniel\GeographicLibrary\Service\Exception\NoSuchCoordinatesException;
 use Neos\Flow\Annotations as Flow;
-use Neos\Flow\Cache\Frontend\VariableFrontend;
+use Neos\Cache\Frontend\VariableFrontend;
 
 /**
  * @Flow\Scope("singleton")
