@@ -6,8 +6,8 @@
         "neos/flow": "~4.0"
     },
     "autoload": {
-        "psr-0": {
-            "Nezaniel\\GeographicLibrary": "Classes"
+        "psr-4": {
+            "Nezaniel\\GeographicLibrary\\": "Classes"
         }
     }
 }
