@@ -1,4 +1,5 @@
-TYPO3:
-  TypoScript:
+
+Neos:
+  Fusion:
     defaultContext:
-      Location: 'Nezaniel\GeographicLibrary\Eel\Helper\LocationHelper'
+      Location: Nezaniel\GeographicLibrary\Eel\Helper\LocationHelper
