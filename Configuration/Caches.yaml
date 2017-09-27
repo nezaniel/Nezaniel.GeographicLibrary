@@ -1,2 +1,2 @@
-Nezaniel_GeographicLibrary_Service_GeoCodingService_Cache:
+Nezaniel_GeographicLibrary_Application_Service_GeoCodingService_Cache:
   persistent: TRUE

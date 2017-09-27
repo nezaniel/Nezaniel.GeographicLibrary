@@ -1,4 +1,4 @@
-Nezaniel\GeographicLibrary\Service\GeoCodingService:
+Nezaniel\GeographicLibrary\Application\Service\GeoCodingService:
   properties:
     cache:
       object:
@@ -6,4 +6,4 @@ Nezaniel\GeographicLibrary\Service\GeoCodingService:
         factoryMethodName: getCache
         arguments:
           1:
-            value: Nezaniel_GeographicLibrary_Service_GeoCodingService_Cache
+            value: Nezaniel_GeographicLibrary_Application_Service_GeoCodingService_Cache

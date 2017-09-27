@@ -1,16 +1,11 @@
 <?php
-namespace Nezaniel\GeographicLibrary\Service;
+namespace Nezaniel\GeographicLibrary\Application\Service;
 
 /*                                                                               *
- * This script belongs to the TYPO3 Flow package "Nezaniel.GeographicLibrary".   *
- *                                                                               *
- * It is free software; you can redistribute it and/or modify it under           *
- * the terms of the GNU General Public License, either version 3 of the          *
- * License, or (at your option) any later version.                               *
- *                                                                               *
- * The TYPO3 project - inspiring people to share!                                *
+ * This script belongs to the Neos Flow package "Nezaniel.GeographicLibrary".   *
  *                                                                               */
-use Nezaniel\GeographicLibrary\Service\Exception\NoSuchCoordinatesException;
+use Nezaniel\GeographicLibrary\Application;
+use Nezaniel\GeographicLibrary\Domain;
 use Neos\Flow\Annotations as Flow;
 use Neos\Cache\Frontend\VariableFrontend;
 
@@ -21,17 +16,17 @@ class GeoCodingService
 {
     /**
      * @Flow\Inject
-     * @var GeoCodingAdapterInterface
+     * @var Domain\Repository\GeoCoderInterface
      */
-    protected $geoCodingAdapter;
+    protected $geoCoder;
 
     /**
-     * @var array
+     * @var array|Application\Value\Coordinates[]
      */
     protected $postalCodeCoordinates = [];
 
     /**
-     * @var array
+     * @var array|Application\Value\Coordinates[]
      */
     protected $addressCoordinates = [];
 
@@ -61,17 +56,16 @@ class GeoCodingService
 
     /**
      * @param string $address The address string
-     * @return array|NULL The coordinates or NULL if none could be fetched
+     * @return Application\Value\Coordinates|NULL The coordinates or NULL if none could be fetched
      */
-    public function fetchCoordinatesByAddress($address)
+    public function fetchCoordinatesByAddress(string $address)
     {
         $addressHash = sha1(mb_strtolower($address));
         if (!isset($this->addressCoordinates[$addressHash])) {
             try {
-                $this->addressCoordinates[$addressHash] = $this->geoCodingAdapter->fetchCoordinatesByAddress($address);
-                $this->addressCoordinates[$addressHash]['address'] = $address;
+                $this->addressCoordinates[$addressHash] = $this->geoCoder->fetchCoordinatesByAddress($address);
                 $this->cache->set('addressCoordinates', $this->addressCoordinates);
-            } catch (NoSuchCoordinatesException $exception) {
+            } catch (Domain\Exception\NoSuchCoordinatesException $exception) {
                 return null;
             }
         }
@@ -81,16 +75,16 @@ class GeoCodingService
     /**
      * @param string $postalCode The zip code
      * @param string $countryCode The two character ISO 3166-1 country code
-     * @return array|NULL The coordinates or NULL if none could be fetched
+     * @return Application\Value\Coordinates|NULL The coordinates or NULL if none could be fetched
      */
-    public function fetchCoordinatesByPostalCode($postalCode, $countryCode)
+    public function fetchCoordinatesByPostalCode(string $postalCode, string $countryCode)
     {
         $cacheIdentifier = $postalCode . '-' . $countryCode;
         if (!isset($this->postalCodeCoordinates[$cacheIdentifier])) {
             try {
-                $this->postalCodeCoordinates[$cacheIdentifier] = $this->geoCodingAdapter->fetchCoordinatesByPostalCode($postalCode, $countryCode);
+                $this->postalCodeCoordinates[$cacheIdentifier] = $this->geoCoder->fetchCoordinatesByPostalCode($postalCode, $countryCode);
                 $this->cache->set('postalCodeCoordinates', $this->postalCodeCoordinates);
-            } catch (NoSuchCoordinatesException $exception) {
+            } catch (Domain\Exception\NoSuchCoordinatesException $exception) {
                 return null;
             }
         }
