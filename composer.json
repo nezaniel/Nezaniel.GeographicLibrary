@@ -1,6 +1,6 @@
 {
     "name": "nezaniel/geographiclibrary",
-    "type": "typo3-flow-package",
+    "type": "neos-nezaniel",
     "description": "A PHP geocoding library based on Flow",
     "require": {
         "neos/flow": "~4.0"
