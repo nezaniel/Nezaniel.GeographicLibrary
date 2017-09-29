@@ -40,12 +40,12 @@ final class GeoCoordinates implements \JsonSerializable
     protected $postalCode;
 
     /**
-     * @var string
+     * @var CountryCode
      */
     protected $addressCountry;
 
 
-    public function __construct(float $latitude, float $longitude, float $elevation = null, string $address = null, string $postalCode = null, string $addressCountry = null)
+    public function __construct(float $latitude, float $longitude, float $elevation = null, string $address = null, string $postalCode = null, CountryCode $addressCountry = null)
     {
         $this->latitude = $latitude;
         $this->longitude = $longitude;
