@@ -21,12 +21,12 @@ class GeoCodingService
     protected $geoCoder;
 
     /**
-     * @var array|Application\Value\Coordinates[]
+     * @var array|Application\Value\GeoCoordinates[]
      */
     protected $postalCodeCoordinates = [];
 
     /**
-     * @var array|Application\Value\Coordinates[]
+     * @var array|Application\Value\GeoCoordinates[]
      */
     protected $addressCoordinates = [];
 
@@ -56,7 +56,7 @@ class GeoCodingService
 
     /**
      * @param string $address The address string
-     * @return Application\Value\Coordinates|NULL The coordinates or NULL if none could be fetched
+     * @return Application\Value\GeoCoordinates|NULL The coordinates or NULL if none could be fetched
      */
     public function fetchCoordinatesByAddress(string $address)
     {
@@ -75,7 +75,7 @@ class GeoCodingService
     /**
      * @param string $postalCode The zip code
      * @param string $countryCode The two character ISO 3166-1 country code
-     * @return Application\Value\Coordinates|NULL The coordinates or NULL if none could be fetched
+     * @return Application\Value\GeoCoordinates|NULL The coordinates or NULL if none could be fetched
      */
     public function fetchCoordinatesByPostalCode(string $postalCode, string $countryCode)
     {

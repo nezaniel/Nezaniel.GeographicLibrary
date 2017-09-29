@@ -16,16 +16,16 @@ interface GeoCoderInterface
 {
     /**
      * @param string $address
-     * @return Application\Value\Coordinates
+     * @return Application\Value\GeoCoordinates
      * @throws Domain\Exception\NoSuchCoordinatesException If no coordinates could be found
      */
-    public function fetchCoordinatesByAddress(string $address): Application\Value\Coordinates;
+    public function fetchCoordinatesByAddress(string $address): Application\Value\GeoCoordinates;
 
     /**
      * @param string $zip
      * @param string $countryCode The two character ISO 3166-1 country code
-     * @return Application\Value\Coordinates
+     * @return Application\Value\GeoCoordinates
      * @throws Domain\Exception\NoSuchCoordinatesException If no coordinates could be found
      */
-    public function fetchCoordinatesByPostalCode(string $zip, string $countryCode): Application\Value\Coordinates;
+    public function fetchCoordinatesByPostalCode(string $zip, string $countryCode): Application\Value\GeoCoordinates;
 }
