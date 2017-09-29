@@ -61,7 +61,10 @@ final class GeoCoordinates implements \JsonSerializable
         return $this->address;
     }
 
-    public function getElevation(): float
+    /**
+     * @return float|null
+     */
+    public function getElevation()
     {
         return $this->elevation;
     }
@@ -76,12 +79,18 @@ final class GeoCoordinates implements \JsonSerializable
         return $this->longitude;
     }
 
-    public function getPostalCode(): string
+    /**
+     * @return string|null
+     */
+    public function getPostalCode()
     {
         return $this->postalCode;
     }
 
-    public function getAddressCountry(): string
+    /**
+     * @return CountryCode|null
+     */
+    public function getAddressCountry()
     {
         return $this->addressCountry;
     }

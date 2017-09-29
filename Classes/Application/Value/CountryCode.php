@@ -31,4 +31,9 @@ final class CountryCode implements \JsonSerializable
     {
         return $this->countryCode;
     }
+
+    public function __toString(): string
+    {
+        return $this->countryCode;
+    }
 }
