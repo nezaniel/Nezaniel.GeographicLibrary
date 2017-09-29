@@ -56,7 +56,10 @@ final class GeoCoordinates implements \JsonSerializable
     }
 
 
-    public function getAddress(): string
+    /**
+     * @return string
+     */
+    public function getAddress()
     {
         return $this->address;
     }

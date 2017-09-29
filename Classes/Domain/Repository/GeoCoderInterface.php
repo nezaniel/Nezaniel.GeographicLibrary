@@ -28,4 +28,10 @@ interface GeoCoderInterface
      * @throws Domain\Exception\NoSuchCoordinatesException If no coordinates could be found
      */
     public function fetchCoordinatesByPostalCode(string $zip, string $countryCode): Application\Value\GeoCoordinates;
+
+    /**
+     * @param Application\Value\GeoCoordinates $coordinates
+     * @return Application\Value\GeoCoordinates
+     */
+    public function enrichGeoCoordinates(Application\Value\GeoCoordinates $coordinates): Application\Value\GeoCoordinates;
 }

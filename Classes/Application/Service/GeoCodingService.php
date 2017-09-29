@@ -1,4 +1,5 @@
 <?php
+
 namespace Nezaniel\GeographicLibrary\Application\Service;
 
 /*                                                                               *
@@ -31,6 +32,11 @@ class GeoCodingService
     protected $addressCoordinates = [];
 
     /**
+     * @var array|Application\Value\GeoCoordinates[]
+     */
+    protected $enrichedCoordinates = [];
+
+    /**
      * @var VariableFrontend
      */
     protected $cache;
@@ -51,12 +57,13 @@ class GeoCodingService
     {
         $this->postalCodeCoordinates = $this->cache->get('postalCodeCoordinates') ?: [];
         $this->addressCoordinates = $this->cache->get('addressCoordinates') ?: [];
+        $this->enrichedCoordinates = $this->cache->get('enrichedCoordinates') ?: [];
     }
 
 
     /**
      * @param string $address The address string
-     * @return Application\Value\GeoCoordinates|NULL The coordinates or NULL if none could be fetched
+     * @return Application\Value\GeoCoordinates|null The coordinates or null if none could be fetched
      */
     public function fetchCoordinatesByAddress(string $address)
     {
@@ -69,13 +76,14 @@ class GeoCodingService
                 return null;
             }
         }
+
         return $this->addressCoordinates[$addressHash];
     }
 
     /**
      * @param string $postalCode The zip code
      * @param string $countryCode The two character ISO 3166-1 country code
-     * @return Application\Value\GeoCoordinates|NULL The coordinates or NULL if none could be fetched
+     * @return Application\Value\GeoCoordinates|null The coordinates or null if none could be fetched
      */
     public function fetchCoordinatesByPostalCode(string $postalCode, string $countryCode)
     {
@@ -88,6 +96,26 @@ class GeoCodingService
                 return null;
             }
         }
+
         return $this->postalCodeCoordinates[$cacheIdentifier];
+    }
+
+    /**
+     * @param Application\Value\GeoCoordinates $coordinates
+     * @return Application\Value\GeoCoordinates|null
+     */
+    public function enrichGeoCoordinates(Application\Value\GeoCoordinates $coordinates)
+    {
+        $cacheIdentifier = $coordinates->getLatitude() . '-' . $coordinates->getLongitude();
+        if (!isset($this->enrichedCoordinates[$cacheIdentifier])) {
+            try {
+                $this->enrichedCoordinates[$cacheIdentifier] = $this->geoCoder->enrichGeoCoordinates($coordinates);
+                $this->cache->set('enrichedCoordinates', $this->enrichedCoordinates);
+            } catch (Domain\Exception\NoSuchCoordinatesException $exception) {
+                return null;
+            }
+        }
+
+        return $this->enrichedCoordinates[$cacheIdentifier];
     }
 }
