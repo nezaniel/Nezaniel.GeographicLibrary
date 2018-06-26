@@ -32,6 +32,7 @@ interface GeoCoderInterface
     /**
      * @param Application\Value\GeoCoordinates $coordinates
      * @return Application\Value\GeoCoordinates
+     * @throws Domain\Exception\NoSuchCoordinatesException If no coordinates could be found
      */
     public function enrichGeoCoordinates(Application\Value\GeoCoordinates $coordinates): Application\Value\GeoCoordinates;
 }
