@@ -5,7 +5,7 @@ namespace Nezaniel\GeographicLibrary\Application\Service;
 /*                                                                               *
  * This script belongs to the Neos Flow package "Nezaniel.GeographicLibrary".   *
  *                                                                               */
-use Neos\Flow\Log\SystemLoggerInterface;
+use Psr\Log\LoggerInterface;
 use Nezaniel\GeographicLibrary\Application;
 use Nezaniel\GeographicLibrary\Domain;
 use Neos\Flow\Annotations as Flow;
@@ -24,7 +24,7 @@ class GeoCodingService
 
     /**
      * @Flow\Inject
-     * @var SystemLoggerInterface
+     * @var LoggerInterface
      */
     protected $systemLogger;
 
