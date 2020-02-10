@@ -55,7 +55,7 @@ class LocationHelper implements ProtectedContextAwareInterface
 
     public function distance(Application\Value\GeoCoordinates $a, Application\Value\GeoCoordinates $b): float
     {
-        return $a->getDistance($b);
+        return $a->calculateDistance($b);
     }
 
 
