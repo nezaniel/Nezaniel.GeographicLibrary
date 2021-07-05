@@ -3,7 +3,7 @@
     "type": "neos-nezaniel",
     "description": "A PHP geocoding library based on Flow",
     "require": {
-        "neos/flow": "~4.0|~5.0|~6.0"
+        "neos/flow": "~4.0|~5.0|~6.0|~7.0"
     },
     "autoload": {
         "psr-4": {
