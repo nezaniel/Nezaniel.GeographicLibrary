@@ -5,11 +5,13 @@ namespace Nezaniel\GeographicLibrary\Application\Service;
 /*                                                                               *
  * This script belongs to the Neos Flow package "Nezaniel.GeographicLibrary".   *
  *                                                                               */
+
 use Psr\Log\LoggerInterface;
 use Nezaniel\GeographicLibrary\Application;
 use Nezaniel\GeographicLibrary\Domain;
 use Neos\Flow\Annotations as Flow;
 use Neos\Cache\Frontend\VariableFrontend;
+use Psr\Log\LogLevel;
 
 /**
  * @Flow\Scope("singleton")
@@ -80,7 +82,7 @@ class GeoCodingService
                 $this->addressCoordinates[$addressHash] = $this->geoCoder->fetchCoordinatesByAddress($address);
                 $this->cache->set('addressCoordinates', $this->addressCoordinates);
             } catch (Domain\Exception\NoSuchCoordinatesException $exception) {
-                $this->systemLogger->logException($exception);
+                $this->systemLogger->log(LogLevel::ERROR, $exception->getMessage());
                 return null;
             }
         }
@@ -101,7 +103,7 @@ class GeoCodingService
                 $this->postalCodeCoordinates[$cacheIdentifier] = $this->geoCoder->fetchCoordinatesByPostalCode($postalCode, $countryCode);
                 $this->cache->set('postalCodeCoordinates', $this->postalCodeCoordinates);
             } catch (Domain\Exception\NoSuchCoordinatesException $exception) {
-                $this->systemLogger->logException($exception);
+                $this->systemLogger->log(LogLevel::ERROR, $exception->getMessage());
                 return null;
             }
         }
@@ -121,7 +123,7 @@ class GeoCodingService
                 $this->enrichedCoordinates[$cacheIdentifier] = $this->geoCoder->enrichGeoCoordinates($coordinates);
                 $this->cache->set('enrichedCoordinates', $this->enrichedCoordinates);
             } catch (Domain\Exception\NoSuchCoordinatesException $exception) {
-                $this->systemLogger->logException($exception);
+                $this->systemLogger->log(LogLevel::ERROR, $exception->getMessage());
                 return null;
             }
         }

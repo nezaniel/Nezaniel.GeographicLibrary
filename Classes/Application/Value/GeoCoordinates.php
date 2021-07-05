@@ -11,6 +11,7 @@ use Neos\Flow\Annotations as Flow;
  * The GeoCoordinates application value object
  *
  * @see http://schema.org/GeoCoordinates
+ * @Flow\Proxy(false)
  */
 final class GeoCoordinates implements \JsonSerializable
 {
@@ -106,7 +107,7 @@ final class GeoCoordinates implements \JsonSerializable
      * @return float The calculated distance in km
      * @link Wikipedia <https://en.wikipedia.org/wiki/Sphere>
      */
-    public function getDistance(GeoCoordinates $other): float
+    public function calculateDistance(GeoCoordinates $other): float
     {
         return (6370
             * acos(
