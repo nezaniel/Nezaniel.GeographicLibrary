@@ -46,7 +46,7 @@ final class GeoCoordinates implements \JsonSerializable
     protected $addressCountry;
 
 
-    public function __construct(float $latitude, float $longitude, float $elevation = null, string $address = null, string $postalCode = null, CountryCode $addressCountry = null)
+    public function __construct(float $latitude, float $longitude, ?float $elevation = null, ?string $address = null, ?string $postalCode = null, ?CountryCode $addressCountry = null)
     {
         $this->latitude = $latitude;
         $this->longitude = $longitude;
