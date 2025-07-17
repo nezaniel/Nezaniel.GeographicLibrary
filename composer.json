@@ -1,6 +1,6 @@
 {
     "name": "nezaniel/geographiclibrary",
-    "type": "neos-nezaniel",
+    "type": "neos-package",
     "description": "A PHP geocoding library based on Neos.Flow",
     "require": {
         "php": "^8.2",

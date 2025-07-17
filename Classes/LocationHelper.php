@@ -6,7 +6,6 @@ namespace Nezaniel\GeographicLibrary;
 
 use Neos\Utility\Arrays;
 use Neos\Eel\ProtectedContextAwareInterface;
-use Neos\Flow\Annotations as Flow;
 
 /**
  * Location helpers for Eel contexts
