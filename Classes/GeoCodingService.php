@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Nezaniel\GeographicLibrary;
 
+use Neos\Cache\Frontend\FrontendInterface;
+use Neos\Flow\Cache\CacheManager;
 use Psr\Log\LoggerInterface;
 use Neos\Flow\Annotations as Flow;
-use Neos\Cache\Frontend\VariableFrontend;
 use Psr\Log\LogLevel;
 
 #[Flow\Scope('singleton')]
@@ -27,17 +28,14 @@ class GeoCodingService
      */
     private array $enrichedCoordinates = [];
 
-    private ?VariableFrontend $cache = null;
+    private FrontendInterface $cache;
 
     public function __construct(
         private readonly GeoCoderInterface $geoCoder,
         private readonly LoggerInterface $systemLogger,
+        CacheManager $cacheManager,
     ) {
-    }
-
-    public function setCache(VariableFrontend $cache): void
-    {
-        $this->cache = $cache;
+        $this->cache = $cacheManager->getCache('Nezaniel_GeographicLibrary_GeoCodingService_Cache');
     }
 
     /**

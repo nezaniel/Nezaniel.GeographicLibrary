@@ -1,9 +1,0 @@
-Nezaniel\GeographicLibrary\GeoCodingService:
-  properties:
-    cache:
-      object:
-        factoryObjectName: Neos\Flow\Cache\CacheManager
-        factoryMethodName: getCache
-        arguments:
-          1:
-            value: Nezaniel_GeographicLibrary_GeoCodingService_Cache
